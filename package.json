@@ -1,0 +1,58 @@
+{
+  "name": "bhunya-erp",
+  "version": "1.0.0",
+  "description": "Bhunya ERP - offline billing, inventory and business management",
+  "main": "src/main.js",
+  "author": "Bhunya ERP",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win portable zip",
+    "dist:mac": "electron-builder --mac dmg zip",
+    "dist:linux": "electron-builder --linux AppImage deb",
+    "android:add": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:open": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0",
+    "electron": "^39.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.bhunyalabs.erp",
+    "productName": "Bhunya ERP",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "package.json",
+      "capacitor.config.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable",
+        "zip"
+      ],
+      "artifactName": "Bhunya-ERP-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "artifactName": "Bhunya-ERP-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "artifactName": "Bhunya-ERP-${version}-${arch}.${ext}"
+    }
+  }
+}
